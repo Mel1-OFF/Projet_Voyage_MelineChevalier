@@ -1,0 +1,278 @@
+/* ==========================================================
+   Travel Gallery - style.css
+   Conçu pour ne pas gêner le JavaScript :
+   - aucun !important
+   - les états (détails ouverts/fermés) passent par des classes
+   - styles inline posés par le JS (style.display...) prioritaires
+   ========================================================== */
+
+/* ---------- Variables ---------- */
+:root {
+    --color-bg: #f6f3ee;
+    --color-surface: #ffffff;
+    --color-text: #1f2933;
+    --color-muted: #6b7280;
+    --color-primary: #1d4e89;
+    --color-primary-dark: #143a68;
+    --color-accent: #e07a3f;
+    --color-header: #12263f;
+
+    --radius: 14px;
+    --shadow: 0 6px 20px rgba(18, 38, 63, 0.12);
+    --shadow-hover: 0 12px 30px rgba(18, 38, 63, 0.2);
+    --transition: 0.25s ease;
+    --max-width: 1200px;
+}
+
+/* ---------- Reset léger ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--color-text);
+    background: var(--color-bg);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ---------- En-tête ---------- */
+header {
+    padding: 2.5rem 1rem 1.5rem;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(135deg, var(--color-header), var(--color-primary));
+}
+
+header h1 {
+    margin: 0;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    letter-spacing: 0.04em;
+}
+
+header>p {
+    margin: 0.4rem 0 1.5rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    opacity: 0.9;
+}
+
+/* ---------- Navigation ---------- */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1rem;
+}
+
+nav a {
+    padding: 0.45rem 1rem;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    transition: background var(--transition), color var(--transition);
+}
+
+nav a:hover,
+nav a:focus-visible {
+    background: #fff;
+    color: var(--color-header);
+}
+
+/* ---------- Contenu principal ---------- */
+main {
+    flex: 1;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem 1rem 3rem;
+}
+
+/* ---------- Galerie (grille responsive) ---------- */
+.galerie {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.75rem;
+    align-items: start;
+}
+
+/* ---------- Carte destination ---------- */
+.destination {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.destination:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Le premier figcaption contient l'image */
+.destination>figcaption:first-child {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.destination img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.destination:hover img {
+    transform: scale(1.06);
+}
+
+.destination h2 {
+    margin: 1rem 1.25rem 0;
+    font-size: 1.35rem;
+    line-height: 1.25;
+}
+
+.destination>p {
+    margin: 0.15rem 1.25rem 0;
+    color: var(--color-muted);
+    font-size: 0.95rem;
+}
+
+/* ---------- Bouton "Afficher les détails" ---------- */
+.btn-details {
+    align-self: flex-start;
+    margin: 1rem 1.25rem;
+    padding: 0.6rem 1.2rem;
+    font: inherit;
+    font-weight: 600;
+    color: #fff;
+    background: var(--color-primary);
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.btn-details:hover {
+    background: var(--color-primary-dark);
+}
+
+.btn-details:active {
+    transform: scale(0.97);
+}
+
+.btn-details:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* Le <span> ne doit jamais bloquer le clic sur le bouton,
+   et le texte reste modifiable par le JS (textContent) */
+.btn-details span {
+    display: inline-block;
+}
+
+/* ---------- Détails (masqués par défaut, ouverts par classe) ----------
+   Le JS peut utiliser l'une de ces classes : active, show, visible, open,
+   is-open, is-active. Il peut aussi utiliser style.display (prioritaire). */
+.details {
+    display: none;
+    margin: 0;
+    padding: 0 1.25rem 1.25rem;
+    color: var(--color-text);
+    font-size: 0.97rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.details p {
+    margin: 0;
+    padding-top: 0.9rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.details.active,
+.details.show,
+.details.visible,
+.details.open,
+.details.is-open,
+.details.is-active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- Pied de page ---------- */
+footer {
+    padding: 1.25rem 1rem;
+    text-align: center;
+    color: #cbd5e1;
+    background: var(--color-header);
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+    header {
+        padding: 2rem 1rem 1.25rem;
+    }
+
+    main {
+        padding: 1.25rem 0.75rem 2rem;
+    }
+
+    .galerie {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    nav a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ---------- Accessibilité : réduire les animations ---------- */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none;
+        transition: none;
+        scroll-behavior: auto;
+    }
+}

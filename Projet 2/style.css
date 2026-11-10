@@ -1,0 +1,160 @@
+/* =========================
+   MISE EN PAGE GENERALE
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f2ed;
+    color: #303b35;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    text-align: center;
+    padding: 65px 20px;
+    background-color: #e6e8df;
+}
+
+header h1 {
+    font-size: 42px;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+header p {
+    color: #737d70;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+header {
+    background-color: #e6e8df;
+    padding: 30px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 32px;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: #303b35;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #8a9a7b;
+}
+
+
+/* =========================
+   GALERIE
+========================= */
+
+.galerie {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+    padding: 60px 8%;
+}
+
+
+/* =========================
+   DESTINATIONS
+========================= */
+
+.destination {
+    background-color: white;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.destination:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.destination img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.destination h2 {
+    font-size: 21px;
+    margin-top: 18px;
+    margin-bottom: 8px;
+}
+
+.destination p {
+    color: #899184;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background-color: #e6e8df;
+    color: #737d70;
+    font-size: 13px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media screen and (max-width: 900px) {
+
+    .galerie {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 40px 5%;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+
+    header h1 {
+        font-size: 30px;
+    }
+
+    .galerie {
+        grid-template-columns: 1fr;
+    }
+
+}
