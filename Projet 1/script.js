@@ -1,24 +1,25 @@
 // Changer couleur boutons details
 
 
-const btnDetails = document.querySelector('#btn-details');
+const btnDetails = document.querySelectorAll('#btn-details');
 
-btnDetails.addEventListener('click', (event) => {
+btnDetails.forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+        const currenttarget = event.currentTarget;
 
-    const currenttarget = event.currentTarget;
+        if (currenttarget.style.backgroundColor === 'orange') {
 
-    if (currenttarget.style.backgroundColor === 'orange') {
+            currenttarget.style.backgroundColor = '#035d30';
+            currenttarget.style.color = 'white';
 
-        currenttarget.style.backgroundColor = '#035d30';
-        currenttarget.style.color = 'white';
+        } else {
 
-    } else {
+            currenttarget.style.backgroundColor = 'orange';
+            currenttarget.style.color = 'white';
 
-        currenttarget.style.backgroundColor = 'orange';
-        currenttarget.style.color = 'white';
+        }
 
-    }
-
+    })
 });
 
 // au clicke affiche les details de l'image
@@ -48,8 +49,61 @@ cartes.forEach((carte) => {
             bouton.textContent = "Afficher les détails";
         }
 
-    });
+    })
 
 });
 
 
+
+// Bouton + : ajouter une carte destination
+
+const galerie = document.querySelector(".galerie");
+
+// Créer le bouton +
+const boutonAjouter = document.createElement("button");
+boutonAjouter.type = "button";
+boutonAjouter.classList.add("btn-ajouter");
+boutonAjouter.textContent = "+";
+boutonAjouter.setAttribute("aria-label", "Ajouter une destination");
+galerie.after(boutonAjouter);
+
+
+
+
+
+
+// Bouton supprimer
+const supprimer = document.createElement("button");
+supprimer.type = "button";
+supprimer.classList.add("btn-supprimer");
+supprimer.textContent = "Supprimer";
+supprimer.addEventListener("click", () => {
+    carte.remove();
+});
+
+
+// reucpere figure
+
+cartes.forEach((carte) => {
+
+    carte.style.display = "none";
+
+
+
+});
+
+cartes[0].style.display = "";
+
+let i = 0;
+
+boutonAjouter.addEventListener('click', (event) => {
+    i++;
+    if (i > cartes.length) return;
+
+
+    cartes[i].style.display = "";
+
+
+
+
+})

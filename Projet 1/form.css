@@ -1,0 +1,173 @@
+/* ==========================================================
+   Formulaire de réservation
+   Même univers que la galerie : fond clair, cartes blanches,
+   bleu principal et touche orange. Réutilise les variables :root.
+   ========================================================== */
+
+.formVoyage {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.ticket {
+    width: 100%;
+    max-width: 560px;
+}
+
+/* Carte du formulaire (.formulaireParis = votre section actuelle) */
+.ticket__panel,
+.formulaireParis {
+    position: relative;
+    padding: 2rem 2rem 1.75rem;
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    border-top: 5px solid var(--color-primary);
+    box-shadow: var(--shadow);
+}
+
+.ticket__title {
+    margin: 0 0 1rem;
+    font-size: 1.6rem;
+    line-height: 1.25;
+    color: var(--color-header);
+}
+
+/* Ligne pointillée "ticket" */
+.ticket__perforation {
+    margin: 0 0 1.5rem;
+    border-top: 2px dashed var(--color-accent);
+    opacity: 0.7;
+}
+
+/* Champs en 2 colonnes */
+.ticket__fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 1.5rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 0;
+}
+
+.field--small {
+    grid-column: span 1;
+}
+
+.ticket label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-muted);
+}
+
+fieldset.field {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+fieldset legend {
+    padding: 0;
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-muted);
+}
+
+.radio {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-right: 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--color-text);
+}
+
+/* Champs de saisie */
+.ticket input[type="text"],
+.ticket input[type="email"],
+.ticket input[type="number"],
+.ticket select {
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    font: inherit;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    background: #fbfaf8;
+    border: 1px solid #d9dde3;
+    border-radius: 8px;
+    transition: border-color var(--transition), box-shadow var(--transition),
+        background var(--transition);
+}
+
+.ticket input::placeholder {
+    color: #9aa3af;
+}
+
+.ticket input:hover,
+.ticket select:hover {
+    border-color: var(--color-primary);
+}
+
+.ticket input:focus,
+.ticket select:focus {
+    outline: none;
+    background: #fff;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(29, 78, 137, 0.2);
+}
+
+.ticket select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+/* Bouton : sur toute la largeur, même s'il est dans la grille */
+.ticket__submit {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.85rem 1.5rem;
+    font: inherit;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #fff;
+    background: var(--color-primary);
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.ticket__submit:hover {
+    background: var(--color-primary-dark);
+}
+
+.ticket__submit:active {
+    transform: scale(0.98);
+}
+
+.ticket__submit:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* Mobile : un champ par ligne */
+@media (max-width: 600px) {
+
+    .ticket__panel,
+    .formulaireParis {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .ticket__fields {
+        grid-template-columns: 1fr;
+    }
+}

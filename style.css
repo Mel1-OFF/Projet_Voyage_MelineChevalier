@@ -1,87 +1,130 @@
-/* GENERAL */
+/* ==========================================================
+   Page d'accueil - Projet Voyage
+   Tout le contenu est centré au milieu de la page.
+   ========================================================== */
 
-* {
-    margin: 0;
-    padding: 0;
+:root {
+    --color-bg: #f6f3ee;
+    --color-text: #72e4e1;
+    --color-muted: #6b7280;
+    --color-primary: #174a96;
+    --color-primary-dark: #20094e;
+    --color-accent: #e07a3f;
+    --color-header: #6a61e1;
+    --transition: 0.25s ease;
+}
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
+/* ---------- Page : contenu centré horizontalement et verticalement ---------- */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f2ed;
-    color: #303b35;
-}
-
-/* HEADER */
-
-header {
-    background-color: #e6e8df;
-    padding: 30px;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* centre vertical */
+    align-items: center;
+    /* centre horizontal */
+    gap: 2.5rem;
+    padding: 2rem 1rem;
     text-align: center;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--color-text);
+    background: linear-gradient(135deg, var(--color-header), var(--color-primary));
 }
 
-header h1 {
-    font-size: 32px;
-    letter-spacing: 3px;
-    margin-bottom: 25px;
+/* ---------- En-tête ---------- */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+    color: #fff;
 }
 
-/* NAVIGATION */
+h1 {
+    margin: 0;
+    font-size: clamp(2rem, 7vw, 4rem);
+    letter-spacing: 0.08em;
+}
 
+/* ---------- Barre de navigation ---------- */
 nav ul {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 40px;
+    gap: 0.75rem 1rem;
+    margin: 0;
+    padding: 0;
     list-style: none;
 }
 
 nav a {
+    display: inline-block;
+    padding: 0.6rem 1.4rem;
+    color: #fff;
+    font-weight: 600;
     text-decoration: none;
-    color: #303b35;
-    font-weight: bold;
-    font-size: 15px;
-    transition: 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+    transition: background var(--transition), color var(--transition),
+        transform var(--transition);
 }
 
-nav a:hover {
-    color: #8a9a7b;
+nav a:hover,
+nav a:focus-visible {
+    background: #fff;
+    color: var(--color-header);
+    transform: translateY(-2px);
 }
 
-/* CONTENU PRINCIPAL */
+nav a:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+}
 
+/* ---------- Texte d'accroche ---------- */
 main {
-    text-align: center;
-    padding: 100px 20px;
+    max-width: 600px;
+    color: #fff;
 }
 
 main h2 {
-    font-size: 35px;
-    margin-bottom: 20px;
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.4rem, 4vw, 2rem);
 }
 
 main p {
-    font-size: 17px;
-    color: #737d70;
+    margin: 0;
+    font-size: 1.05rem;
+    opacity: 0.9;
 }
 
-/* FOOTER */
-
-footer {
-    text-align: center;
-    padding: 25px;
-    background-color: #e6e8df;
-    color: #737d70;
-}
-
-/* RESPONSIVE */
-
+/* ---------- Mobile ---------- */
 @media (max-width: 600px) {
-    nav ul {
-        flex-direction: column;
-        gap: 20px;
+    body {
+        gap: 2rem;
     }
 
-    main {
-        padding: 60px 20px;
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        min-width: 180px;
+    }
+}
+
+/* ---------- Accessibilité ---------- */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none;
     }
 }

@@ -7,7 +7,11 @@
     <title>Gallerie de voyage</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="projet1.css">
     <script src="script.js" defer></script>
+    <script src="form.js" defer></script>
+
 </head>
 
 <body>
@@ -17,21 +21,11 @@
         <p>Explorez le monde à travers nos destinations</p>
 
         <nav>
-
             <a href="../acceuil.html">Accueil</a>
-
-
-
             <a href="../projet 1/index.html">Projet 1</a>
-
-
             <a href="../projet 2/index.html">Projet 2</a>
-
-
             <a href="../projet 3/index.html">Projet 3</a>
-
         </nav>
-
     </header>
 
     <main>
@@ -39,26 +33,101 @@
         <section class="galerie">
 
             <section class="destination">
-                <figcaption><img src="images/paris.jpg" alt="Paris">
-                </figcaption>
+                <figure>
+                    <figcaption><img src="images/paris.jpg" alt="Paris"></figcaption>
+                </figure>
                 <h2>Arc de Triomphe</h2>
                 <p>Paris</p>
 
                 <button id="btn-details" type="button" class="btn-details">
-                    <span>Afficher les détails</span> </button>
+                    <span>Afficher les détails</span>
+                </button>
 
                 <figcaption class="details">
                     <p>Le monument emblématique de Paris, situé sur la célèbre avenue des Champs-Élysées,
                         offrant une vue panoramique sur la ville.</p>
                 </figcaption>
+            </section>
+
+            <section class="destination">
+                <figure>
+                    <figcaption><img src="images/paris montmartre.jpg" alt="Paris Montmartre"></figcaption>
+                </figure>
+                <h2>Montmartre</h2>
+                <p>Paris</p>
+
+                <button id="btn-details" type="button" class="btn-details">
+                    <span>Afficher les détails</span>
+                </button>
+
+                <figcaption class="details">
+                    <p>Le quartier artistique de Paris, célèbre pour sa vue imprenable sur la ville et ses rues
+                        pavées.</p>
+                </figcaption>
+            </section>
+
+            <section class="destination">
+
+                <figure>
+                    <figcaption><img src="images/paris tour effeil.jpg" alt="Paris Tour Eiffel"></figcaption>
+                </figure>
 
 
+                <h2>Tour Eiffel</h2>
+                <p>Paris</p>
+
+                <button id="btn-details" type="button" class="btn-details">
+                    <span>Afficher les détails</span>
+                </button>
+
+                <figcaption class="details">
+                    <p>Monument emblématique de Paris, situé sur la Seine, offrant une vue panoramique sur la
+                        ville.</p>
+                </figcaption>
 
             </section>
 
+        </section>
+
+
+        <section class="formVoyage">
+
+            <form id="ReservationParis" class="ticket" onsubmit="gererReservationParis(event)">
+
+                <section class="formulaireParis">
+                    <h2 class="ticket__title">Vos informations</h2>
+
+                    <div class="ticket__perforation" aria-hidden="true"></div>
+
+                    <div class="ticket__fields">
+                        <div class="field">
+                            <label for="prenomClient">Prénom</label>
+                            <input type="text" id="prenomClient" name="prenomClient" placeholder="Votre prénom"
+                                required>
+                        </div>
+
+                        <div class="field">
+                            <label for="FilmChoisi">Nom de la destination</label>
+                            <input type="text" id="DestinationChoisi" name="NomDestination"
+                                placeholder="Nom de la Destination" required>
+                        </div>
+
+                        <div class="field field--small">
+                            <label for="nombrePlaces">Nombre de places</label>
+                            <input type="number" id="nombrePlaces" name="nombrePlaces" min="1" max="10" value="1"
+                                required>
+                        </div>
+
+
+                        <button type="submit" class="ticket__submit">Valider la réservation</button>
+                </section>
 
 
         </section>
+
+
+
+
 
     </main>
 
